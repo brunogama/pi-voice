@@ -13,7 +13,7 @@ Restart Pi or run `/reload`.
 After the repository is published and tagged:
 
 ```sh
-pi install git:github.com/YOUR_USER/pi-voice@v0.1.0
+pi install git:github.com/brunogama/pi-voice@v0.1.0
 ```
 
 ## Install from npm
@@ -21,7 +21,7 @@ pi install git:github.com/YOUR_USER/pi-voice@v0.1.0
 After publishing to npm:
 
 ```sh
-pi install npm:pi-voice
+pi install npm:@brunogama/pi-voice
 ```
 
 ## Runtime dependencies

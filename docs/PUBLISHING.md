@@ -20,7 +20,7 @@ git push origin main --tags
 Users can install with:
 
 ```sh
-pi install git:github.com/YOUR_USER/pi-voice@v0.1.0
+pi install git:github.com/brunogama/pi-voice@v0.1.0
 ```
 
 ## npm release
@@ -35,7 +35,7 @@ npm publish --access public
 Users can install with:
 
 ```sh
-pi install npm:pi-voice
+pi install npm:@brunogama/pi-voice
 ```
 
 ## Pi package gallery

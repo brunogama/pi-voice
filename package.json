@@ -1,5 +1,5 @@
 {
-  "name": "pi-voice",
+  "name": "@brunogama/pi-voice",
   "version": "0.1.0",
   "description": "Hold-Space voice dictation extension for Pi using ffmpeg and Whisper.",
   "type": "module",
@@ -45,5 +45,16 @@
     "lint": "node ./scripts/lint-repository.mjs",
     "test": "npm run lint && npm run smoke && npm run pack:dry",
     "lint:commits": "node ./scripts/validate-conventional-commits.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunogama/pi-voice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brunogama/pi-voice/issues"
+  },
+  "homepage": "https://github.com/brunogama/pi-voice#readme",
+  "publishConfig": {
+    "access": "public"
   }
 }
