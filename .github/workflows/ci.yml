@@ -1,0 +1,70 @@
+name: Validate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conventional-commits:
+    name: Conventional Commits 1.0.0
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Determine commit range
+        id: commit-range
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            range="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          elif [[ "${{ github.event.before }}" =~ ^0+$ ]]; then
+            range="${{ github.sha }}"
+          else
+            range="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          echo "range=$range" >> "$GITHUB_OUTPUT"
+
+      - name: Validate commit messages
+        run: node scripts/validate-conventional-commits.mjs --range "${{ steps.commit-range.outputs.range }}"
+
+      - name: Validate pull request title for squash merges
+        if: github.event_name == 'pull_request'
+        run: node scripts/validate-conventional-commits.mjs --message "$PR_TITLE" --label "pull request title"
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+
+  tests:
+    name: Repository tests
+    runs-on: macos-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Pi CLI
+        run: npm install -g @earendil-works/pi-coding-agent
+
+      - name: Run repository tests
+        run: npm test
