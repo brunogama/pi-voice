@@ -21,7 +21,7 @@ pi install git:github.com/brunogama/pi-voice@v0.1.0
 After publishing to npm:
 
 ```sh
-pi install npm:@brunogama/pi-voice
+pi install npm:@brngp/pi-voice
 ```
 
 ## Runtime dependencies

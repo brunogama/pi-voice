@@ -1,5 +1,5 @@
 {
-  "name": "@brunogama/pi-voice",
+  "name": "@brngp/pi-voice",
   "version": "0.1.0",
   "description": "Hold-Space voice dictation extension for Pi using ffmpeg and Whisper.",
   "type": "module",

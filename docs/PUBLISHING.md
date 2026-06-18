@@ -35,7 +35,7 @@ npm publish --access public
 Users can install with:
 
 ```sh
-pi install npm:@brunogama/pi-voice
+pi install npm:@brngp/pi-voice
 ```
 
 ## Pi package gallery
